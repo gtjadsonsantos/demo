@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import core.models.Cliente;
 import core.repositorys.ClienteRespository;
 
-@RestController
+@RestController(value = "clientes")
 public class ClienteController {
       
   @Autowired
