@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,14 +29,28 @@ public class ClienteController {
   }
 
   @GetMapping("{id}")
-  public ResponseEntity<Cliente> pesquisarPorId(
-    @PathVariable Long id
-  ) {
+  public ResponseEntity<Cliente> pesquisarPorId(@PathVariable Long id ) {
      
     try {
       return new ResponseEntity<>(repo.findById(id).get(),HttpStatus.OK);
     } catch (Exception e) {
-      return new ResponseEntity<>(repo.findById(id).get(),HttpStatus.OK);
+      return new ResponseEntity<>(repo.findById(id).get(),HttpStatus.NOT_FOUND);
     }
+  }
+
+  @GetMapping("/pesquisarPorNome/{nome}")
+  public ResponseEntity<List<Cliente>> pesquisarPorNome(@PathVariable String nome) {
+    try {
+      return new ResponseEntity<>(repo.findByNome(nome),HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>(repo.findByNome(nome),HttpStatus.NOT_FOUND);
+    }
+  }
+
+  @PostMapping
+  public Cliente salvar(@RequestBody Cliente cliente) {
+
+
+    return repo.saveAndFlush(cliente);
   }
 }

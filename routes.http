@@ -4,3 +4,6 @@ GET http://localhost:8080/clientes/todos HTTP/1.1
 
 ### Pesquisa somente por um cliente
 GET http://localhost:8080/clientes/1 HTTP/1.1
+
+
+## systemctl daemon-reload && systemctl stop x11vnc.service && systemctl start x11vnc.service
