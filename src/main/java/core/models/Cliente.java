@@ -21,6 +21,10 @@ public class Cliente implements Serializable {
     @Column(nullable = false)
     String nome;
     
+    @Column(nullable = false)
+    String cpf;
+    
+
     @Lob
     @Column(nullable = false, unique = true)
     String email;
@@ -30,10 +34,12 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(Long id, String nome, String email) {
+    public Cliente(Long id, String nome, String email,String cpf) {
         this.id = id;
         this.nome = nome;
         this.email = email;
+        this.cpf = cpf;
+
     }
     
     public Long getId() {
@@ -60,8 +66,15 @@ public class Cliente implements Serializable {
         this.email = email;
     }
 
-   
     
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
